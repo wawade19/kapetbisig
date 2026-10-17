@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kape’t Bisig</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--esp:#1C1310;--esp2:#160E0B;--sand:#EBE5DF;--cream:#E5DDD5;--card:#F0EAE1;--gold:#8E490E;--gold2:#9B5314;--bronze:#3D2A20;--tx:#F5EFE9;--dk:#1C1310;--r:16px;--serif:'Playfair Display',Georgia,serif;--sans:'Plus Jakarta Sans',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{font-family:var(--sans);background:var(--sand);color:var(--dk);line-height:1.6;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+h1,h2,h3{font-family:var(--serif);line-height:1.15;font-weight:700}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:3px solid var(--gold2);outline-offset:2px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+.btn{display:inline-block;padding:13px 26px;border-radius:999px;font-weight:600;background:var(--gold);color:var(--tx);transition:background .2s}
+.btn:hover{background:var(--gold2)}
+.btn.out{background:none;border:1.5px solid var(--bronze);color:var(--tx)}
+.btn.out:hover{background:var(--bronze)}
+/* nav */
+header{background:var(--esp);color:var(--tx);position:sticky;top:0;z-index:20}
+nav{display:flex;align-items:center;gap:20px;height:68px}
+.logo{font-family:var(--serif);font-size:1.4rem;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.links{display:flex;gap:6px;margin:0 auto}
+.links button{padding:8px 14px;border-radius:999px;font-size:.95rem;opacity:.8}
+.links button:hover,.links button.on{opacity:1;background:var(--bronze)}
+.ctrl{display:flex;align-items:center;gap:6px}
+.ic{width:40px;height:40px;display:grid;place-items:center;border-radius:50%;position:relative}
+.ic:hover{background:var(--bronze)}
+.ic svg,.logo svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+#cnt{position:absolute;top:2px;right:0;background:var(--gold2);color:#fff;font-size:.7rem;min-width:18px;height:18px;border-radius:9px;display:grid;place-items:center}
+#burger{display:none}
+.sbar{display:none;gap:8px;align-items:center;padding-bottom:14px}.sbar.on{display:flex}
+.sbar input{flex:1;min-width:0;background:var(--bronze);color:var(--tx);border:0;border-radius:999px;padding:12px 20px;font:inherit}
+.sbar input::placeholder{color:#C9BBAE}
+/* views */
+.view{display:none}.view.on{display:block}
+.hero{background:linear-gradient(90deg,rgba(22,14,11,.96) 0%,rgba(22,14,11,.82) 45%,rgba(22,14,11,.25) 100%),var(--hb,#1C1310) center/cover;color:var(--tx);padding:72px 0;min-height:560px;display:flex;align-items:center}
+.hero .wrap{width:100%}
+.pic img.mul{mix-blend-mode:multiply;max-height:150px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,620px);gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.2rem,5vw,3.8rem);margin-bottom:18px}
+.hero p{opacity:.8;max-width:50ch;margin-bottom:26px}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.stats{display:flex;gap:32px;margin-top:38px;flex-wrap:wrap}
+.stats b{display:block;font-family:var(--serif);font-size:1.8rem;color:#D9A66B}
+.stats span{font-size:.85rem;opacity:.75}
+.art{display:grid;place-items:center}
+.arch{width:min(100%,380px);aspect-ratio:3/4;background:radial-gradient(circle at 50% 30%,#3D2A20,#241812);border-radius:999px 999px 24px 24px;display:grid;place-items:center;border:1px solid var(--bronze)}
+.arch img{width:60%;max-height:82%;object-fit:contain}
+.pic img{max-height:145px;max-width:88%;object-fit:contain}
+.coaster{width:55%;height:14px;background:#6B4423;border-radius:50%;margin-top:-30px;box-shadow:0 8px 0 #4a2f18}
+section{padding:64px 0}
+section h2{font-size:clamp(1.7rem,3.5vw,2.4rem);margin-bottom:28px}
+.feat{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.feat div{background:var(--card);border-radius:var(--r);padding:26px 20px}
+.feat svg{width:34px;height:34px;stroke:var(--gold);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;margin-bottom:12px}
+.feat h3{font-size:1.1rem;margin-bottom:4px}.feat p{font-size:.9rem;opacity:.75}
+.cream{background:var(--cream)}
+.car{display:flex;gap:16px;overflow-x:auto;padding-bottom:12px;scroll-snap-type:x mandatory}
+.car .pc{flex:0 0 240px;scroll-snap-align:start}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.two p{margin-bottom:14px;opacity:.85}
+.panel{background:var(--esp);border-radius:var(--r);padding:36px;color:var(--tx);display:grid;place-items:center;min-height:320px}
+.panel img{width:55%;max-width:240px}
+.panel.ph{padding:0;overflow:hidden;min-height:340px;display:block}
+.panel.ph img{width:100%;max-width:none;height:100%;min-height:340px;object-fit:cover;display:block}
+.nimg{width:100%;height:160px;object-fit:cover;border-radius:12px;margin-bottom:12px;display:block}
+.ban[data-bg]{background:linear-gradient(90deg,rgba(22,14,11,.92),rgba(22,14,11,.45)),var(--bb) center/cover;padding:80px 0}
+/* banner */
+.ban{background:var(--esp);color:var(--tx);padding:48px 0}
+.ban .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px}
+.ban h1{font-size:clamp(2.2rem,5vw,3.4rem)}
+.ban .arch{width:170px;aspect-ratio:1;border-radius:999px 999px 16px 16px}
+.ban .arch img{width:58%}
+/* menu */
+.menu{display:grid;grid-template-columns:220px 1fr;gap:28px;padding:48px 20px}
+.side{display:flex;flex-direction:column;gap:6px;align-self:start;position:sticky;top:84px}
+.side button{text-align:left;padding:12px 18px;border-radius:12px;font-weight:500}
+.side button:hover{background:var(--cream)}
+.side button.on{background:var(--esp);color:var(--tx)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pc{background:var(--card);border-radius:var(--r);padding:14px;text-align:left;display:flex;flex-direction:column;gap:6px;transition:transform .2s}
+.pc:hover{transform:translateY(-3px)}
+.pic{background:var(--cream);border-radius:12px;height:170px;display:grid;place-items:center;position:relative}
+.pic svg{height:140px}
+.tag{position:absolute;top:10px;left:10px;background:var(--esp);color:var(--tx);font-size:.72rem;padding:3px 10px;border-radius:999px}
+.pc h3{font-size:1.1rem}.pc p{font-size:.85rem;opacity:.75;flex:1}
+.pr{font-weight:600;font-size:.88rem;color:var(--gold)}
+/* spotlight */
+.spot{background:var(--esp);color:var(--tx);border-radius:var(--r);padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+.spot ul{list-style:none;padding:0;display:grid;gap:10px;margin-top:14px}
+.spot li{padding-left:22px;position:relative;opacity:.85}
+.spot li:before{content:"";position:absolute;left:0;top:.6em;width:8px;height:8px;border-radius:50%;background:#D9A66B}
+.simple{padding:64px 20px}
+.simple p{max-width:60ch;margin-bottom:12px;opacity:.85}
+details{background:var(--card);border-radius:12px;padding:16px 20px;margin-bottom:10px}
+summary{font-weight:600;cursor:pointer}
+.nw{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.nw div{background:var(--card);border-radius:var(--r);padding:24px}
+.nw h3{font-size:1.1rem;margin-bottom:6px}
+footer{background:var(--esp2);color:var(--tx);opacity:.9;text-align:center;padding:28px;font-size:.85rem}
+/* overlays */
+.scrim{position:fixed;inset:0;background:rgba(22,14,11,.6);opacity:0;pointer-events:none;transition:opacity .25s;z-index:40}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(400px,100%);background:var(--card);z-index:50;transform:translateX(100%);transition:transform .3s;display:flex;flex-direction:column;padding:calc(20px + env(safe-area-inset-top,0px)) 20px calc(20px + env(safe-area-inset-bottom,0px))}
+.drawer.on{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+#items{flex:1;overflow:auto;display:grid;gap:10px;align-content:start}
+.ci{background:var(--cream);border-radius:12px;padding:12px 14px;display:flex;justify-content:space-between;gap:10px;font-size:.88rem}
+.ci small{display:block;opacity:.7}
+.ci button{color:var(--gold);font-size:.8rem;text-decoration:underline}
+.tot{display:flex;justify-content:space-between;font-weight:600;font-size:1.1rem;padding:14px 0}
+.modal{position:fixed;left:50%;top:50%;width:min(480px,calc(100% - 24px));max-height:90vh;overflow:auto;background:var(--card);border-radius:var(--r);padding:24px;z-index:50;transform:translate(-50%,-46%);opacity:0;pointer-events:none;transition:.25s}
+.modal.on{opacity:1;pointer-events:auto;transform:translate(-50%,-50%)}
+fieldset{border:0;padding:0;margin:16px 0 0}
+legend{font-weight:600;margin-bottom:8px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opts label{cursor:pointer}
+.opts input{position:absolute;opacity:0}
+.opts span{display:block;padding:8px 16px;border-radius:999px;border:1.5px solid var(--bronze);font-size:.88rem}
+.opts input:checked+span{background:var(--esp);color:var(--tx)}
+.opts input:focus-visible+span{outline:3px solid var(--gold2)}
+.mf{display:flex;justify-content:space-between;align-items:center;margin-top:22px;gap:12px}
+.qty{display:flex;align-items:center;gap:12px}
+.qty button{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--bronze)}
+#toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%) translateY(80px);background:var(--esp);color:var(--tx);padding:12px 22px;border-radius:999px;z-index:60;transition:transform .3s;font-size:.9rem}
+#toast.on{transform:translateX(-50%)}
+@media(max-width:900px){
+.hero{background:linear-gradient(rgba(22,14,11,.82),rgba(22,14,11,.7)),var(--hb,#1C1310) 80% center/cover}
+.grid{grid-template-columns:repeat(2,1fr)}.feat{grid-template-columns:repeat(2,1fr)}.nw{grid-template-columns:1fr}
+.hero .wrap,.two,.spot{grid-template-columns:1fr}.hero .art{order:-1}.arch{max-width:260px}
+.menu{grid-template-columns:1fr}.side{flex-direction:row;overflow-x:auto;position:static}.side button{white-space:nowrap}
+#burger{display:grid}.links{display:none;position:absolute;top:68px;left:0;right:0;background:var(--esp);flex-direction:column;padding:10px 20px 16px;margin:0}.links.on{display:flex}
+.ob{display:none}}
+@media(max-width:520px){.grid,.feat{grid-template-columns:1fr}.ban .arch{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.ban[data-bg="shots"]{background:linear-gradient(90deg,rgba(22,14,11,.7),rgba(22,14,11,0) 70%),var(--bb) center/cover}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="cup" viewBox="0 0 200 260"><rect x="112" y="4" width="8" height="120" rx="4" fill="#9B5314" transform="rotate(12 116 64)"/><path d="M40 50h120l-14 190a12 12 0 0 1-12 11H66a12 12 0 0 1-12-11z" fill="#F5EFE9" fill-opacity=".14" stroke="#F5EFE9" stroke-opacity=".5" stroke-width="3"/><path d="M47 120h106l-11 120a10 10 0 0 1-10 9H68a10 10 0 0 1-10-9z" fill="var(--c,#4A2C17)"/><path d="M47 120h106l-3 34H50z" fill="#E5DDD5" fill-opacity=".85"/><g fill="#fff" fill-opacity=".55"><rect x="62" y="62" width="34" height="34" rx="7" transform="rotate(-10 79 79)"/><rect x="104" y="80" width="32" height="32" rx="7" transform="rotate(14 120 96)"/><rect x="78" y="126" width="30" height="30" rx="7" transform="rotate(8 93 141)"/></g></symbol>
+<symbol id="bean" viewBox="0 0 40 40"><ellipse cx="20" cy="20" rx="11" ry="16" transform="rotate(35 20 20)" fill="#6B4423"/><path d="M12 10c8 6 8 14 16 20" stroke="#1C1310" stroke-width="2" fill="none"/></symbol>
+</defs></svg>
+
+<header><div class="wrap"><nav>
+<button class="logo" data-go="home" aria-label="Kape’t Bisig home"><svg viewBox="0 0 24 24"><path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM16 10h2a2 2 0 0 1 0 4h-2M8 3v3M12 3v3"/></svg>Kape’t Bisig</button>
+<div class="links" id="links">
+<button data-go="home" class="on">Home</button><button data-go="menu">Menu</button><button data-go="story">Our Story</button><button data-go="loc">Locations</button><button data-go="faq">FAQ</button></div>
+<div class="ctrl">
+<button class="ic" id="srch" aria-label="Search menu" aria-expanded="false"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></button>
+
+<button class="ic" id="bag" aria-label="Open cart"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 0 1 6 0v2"/></svg><span id="cnt">0</span></button>
+<button class="btn ob" id="order">Order Coffee</button>
+<button class="ic" id="burger" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</div></nav><div class="sbar" id="sbar"><input id="sq" type="search" placeholder="Search drinks and pastries" aria-label="Search the menu" autocomplete="off"><button class="ic" id="sx" aria-label="Close search">✕</button></div></div></header>
+
+<main>
+<div class="view on" id="v-home">
+<div class="hero"><div class="wrap">
+<div><h1>Chill With Perfectly Brewed Iced Coffee</h1>
+<p>Handcrafted cold brews steeped slow and served over ice, made the way Filipino coffee culture has always been shared: together.</p>
+<div class="row"><button class="btn" data-go="menu">Order Iced Coffee</button><button class="btn out" data-go="menu">Explore Menu</button></div>
+<div class="stats"><div><b>30+</b><span>Coffee Variants</span></div><div><b>5k+</b><span>Happy Customers</span></div><div><b>100%</b><span>Premium Arabica Beans</span></div></div></div>
+</div></div>
+<section><div class="wrap"><h2>Brewed to Refresh</h2><div class="feat" id="feat"></div></div></section>
+<section class="cream"><div class="wrap"><h2>Our Cold Brew Collection</h2><div class="car" id="car"></div></div></section>
+<section><div class="wrap two"><div><h2>Grown nearby, brewed together</h2>
+<p>Kape’t Bisig began as a shared table: neighbors, farmers and baristas passing a cup from hand to hand.</p>
+<p>We buy Arabica from highland farms across the Philippines, roast in small batches and steep every cold brew for 18 hours.</p>
+<button class="btn" data-go="story">Read Our Story</button></div>
+<div class="panel ph"><img data-ph="woman" alt="A woman holding a cup of coffee"></div></div></section>
+</div>
+
+<div class="view" id="v-menu">
+<div class="ban" data-bg="shots"><div class="wrap"><h1>Our Menu</h1></div></div>
+<div class="wrap menu"><div class="side" id="side" role="tablist"></div><div class="grid" id="grid"></div></div>
+</div>
+
+<div class="view" id="v-story">
+<div class="ban" data-bg="cups"><div class="wrap"><h1>Our Story</h1></div></div>
+<section><div class="wrap two"><div><h2>Hand in hand, cup by cup</h2>
+<p>“Bisig” means arm, and also strength shared. Our first stall was a folding table where each customer helped carry the ice.</p>
+<p>Today we still source beans from small local growers, pay them fairly, and brew every drink by hand.</p>
+<p>Our baristas train for months on cold brew, because patience is the recipe.</p></div>
+<div class="panel ph"><img data-ph="cherries" alt="Ripe red coffee cherries on the branch"></div></div></section>
+<section class="cream"><div class="wrap"><div class="spot"><div><h2>Made with care, shared with community</h2><ul><li>Local Arabica from partner farms</li><li>18-hour slow steep, never rushed</li><li>A portion of every cup supports coffee growers</li></ul></div>
+<div class="panel ph"><img data-ph="cups" alt="Overhead view of assorted coffee cups"></div></div></div></section>
+</div>
+
+<div class="view" id="v-loc"><div class="ban" data-bg="cherries"><div class="wrap"><h1>Locations</h1></div></div><div class="wrap simple"><div class="nw"><div><h3>Caloocan</h3><p>Open daily, 8am to 10pm.</p></div><div><h3>Quezon City</h3><p>Open daily, 7am to 11pm.</p></div><div><h3>Manila</h3><p>Open daily, 9am to 9pm.</p></div></div></div></div>
+<div class="view" id="v-faq"><div class="ban" data-bg="woman"><div class="wrap"><h1>FAQ</h1></div></div><div class="wrap simple">
+<details><summary>How long is your cold brew steeped?</summary><p>Every batch steeps for 18 hours.</p></details>
+<details><summary>Do you offer non-dairy milk?</summary><p>Yes. Choose oat or almond when you customize any drink.</p></details>
+<details><summary>Can I change sweetness and ice?</summary><p>Yes. Tap any drink to set ice level, sweetness, milk and add-ons.</p></details></div></div>
+</main>
+<footer>© 2026 Kape’t Bisig. Coffee, hand in hand.</footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Cart" aria-hidden="true">
+<div class="dh"><h2 style="font-size:1.5rem">Your Order</h2><button class="ic" id="x1" aria-label="Close cart">✕</button></div>
+<div id="items"></div>
+<div class="tot"><span>Total</span><span id="total">₱0</span></div>
+<button class="btn" id="chk">Checkout</button></aside>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mt"></div>
+<div id="toast" role="status"></div>
+
+<script>
+const P=[{"n": "Latte", "d": "Layered espresso and milk, finished with a soft foam cap.", "m": 130, "l": 150, "b": "Customer Favorite", "c": ["Bestsellers", "Espresso & Milk"]}, {"n": "Iced Coffee", "d": "Chilled coffee and milk poured over fresh ice.", "m": 120, "l": 140, "b": "Customer Favorite", "c": ["Bestsellers", "Iced Coffee"]}, {"n": "Cold Brew", "d": "Slow-steeped for 18 hours. Smooth, bold and low in acid.", "m": 120, "l": 140, "b": "Pure & Bold", "c": ["Bestsellers", "Cold Brew"]}, {"n": "Dalgona Coffee", "d": "Whipped coffee foam floated over cold milk.", "m": 150, "l": 170, "b": "Customer Favorite", "c": ["Bestsellers", "Top Picks", "Iced Coffee"]}, {"n": "Nitro Cold Brew", "d": "Cold brew infused with nitrogen for a creamy, cascading pour.", "m": 150, "l": 170, "b": "New Arrival", "c": ["Top Picks", "Cold Brew"]}, {"n": "Cappuccino", "d": "Espresso with steamed milk and thick, velvety foam.", "m": 130, "l": 150, "b": "Customer Favorite", "c": ["Top Picks", "Espresso & Milk"], "h": 1}, {"n": "Flat White", "d": "Double espresso with silky microfoam.", "m": 135, "l": 155, "b": "", "c": ["Top Picks", "Espresso & Milk"], "h": 1}, {"n": "Matcha Latte", "d": "Ceremonial matcha shaken with cold milk.", "m": 140, "l": 160, "b": "Top Pick", "c": ["Top Picks", "Non-Coffee"]}, {"n": "Espresso", "d": "Short, intense, topped with golden crema.", "m": 90, "l": null, "b": "Pure & Bold", "c": ["Espresso & Milk"], "h": 1}, {"n": "Americano", "d": "Espresso lengthened with hot water.", "m": 110, "l": 130, "b": "", "c": ["Espresso & Milk"], "h": 1}, {"n": "Macchiato", "d": "Espresso marked with a spoonful of foam.", "m": 120, "l": null, "b": "", "c": ["Espresso & Milk"], "h": 1}, {"n": "Cortado", "d": "Espresso cut with an equal amount of warm milk.", "m": 125, "l": null, "b": "", "c": ["Espresso & Milk"], "h": 1}, {"n": "Affogato", "d": "Vanilla gelato drowned in a shot of espresso.", "m": 155, "l": null, "b": "New Arrival", "c": ["Specialty", "Top Picks"]}, {"n": "Irish Coffee", "d": "Hot coffee under a cap of cold cream. Alcohol-free.", "m": 160, "l": null, "b": "", "c": ["Specialty"], "h": 1}, {"n": "Vienna Coffee", "d": "Espresso crowned with whipped cream and chocolate.", "m": 160, "l": null, "b": "", "c": ["Specialty"], "h": 1}, {"n": "Golden Latte", "d": "Warm turmeric and spice latte with steamed milk.", "m": 150, "l": 170, "b": "New Arrival", "c": ["Non-Coffee", "Specialty"], "h": 1}, {"n": "Strawberry Shortcake", "d": "Soft sponge layers, cream and a fresh cherry on top.", "m": 120, "l": null, "b": "Customer Favorite", "c": ["Pastries", "Top Picks"]}, {"n": "Butter Croissant", "d": "Flaky and golden, baked fresh every morning.", "m": 95, "l": null, "b": "", "c": ["Pastries", "Bestsellers"]}, {"n": "Chocolate Orange Cake", "d": "Dark chocolate glaze over rich cake, with candied orange.", "m": 130, "l": null, "b": "New Arrival", "c": ["Pastries"]}, {"n": "Puff Pastry", "d": "Crisp, buttery layers. Best with black coffee.", "m": 85, "l": null, "b": "", "c": ["Pastries"]}, {"n": "Pancake", "d": "A fluffy griddle pancake, served warm.", "m": 90, "l": null, "b": "", "c": ["Pastries"]}];
+const IMG={"Espresso":"img/espresso.webp", "Americano":"img/americano.webp", "Cappuccino":"img/cappuccino.webp", "Latte":"img/latte.webp", "Macchiato":"img/macchiato.webp", "Flat White":"img/flat-white.webp", "Cortado":"img/cortado.webp", "Affogato":"img/affogato.webp", "Iced Coffee":"img/iced-coffee.webp", "Cold Brew":"img/cold-brew.webp", "Nitro Cold Brew":"img/nitro-cold-brew.webp", "Irish Coffee":"img/irish-coffee.webp", "Vienna Coffee":"img/vienna-coffee.webp", "Dalgona Coffee":"img/dalgona-coffee.webp", "Golden Latte":"img/golden-latte.webp", "Matcha Latte":"img/matcha-latte.webp", "Strawberry Shortcake":"img/strawberry-shortcake.jpg", "Chocolate Orange Cake":"img/chocolate-orange-cake.jpg", "Puff Pastry":"img/puff-pastry.jpg", "Butter Croissant":"img/butter-croissant.jpg", "Pancake":"img/pancake.jpg"};
+const HERO="img/hero.jpg";
+const PH={"shots":"img/shots.jpg","cherries":"img/cherries.jpg", "woman":"img/woman.jpg", "cups":"img/cups.jpg"};
+const CATS=["Bestsellers", "Top Picks", "Espresso & Milk", "Cold Brew", "Iced Coffee", "Specialty", "Non-Coffee", "Pastries"];
+const F=[["18-Hour Cold Brew","Steeped slowly for deep, low-acid flavor.","M12 3v18M4.5 7.5l15 9M4.5 16.5l15-9"],["Smooth, Bold & Refreshing","Strong coffee that goes down easy.","M3 12c3-4 6 4 9 0s6 4 9 0M3 17c3-4 6 4 9 0s6 4 9 0M3 7c3-4 6 4 9 0s6 4 9 0"],["No Artificial Flavors","Only real beans, milk and syrups.","M5 19c0-9 5-14 14-14 0 9-5 14-14 14zM5 19l8-8"],["Served Ice-Cold","Every cup poured over fresh ice.","M5 5h14v14H5zM9 9l2 2M13 13l2 2"]];
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const money=n=>"₱"+n;
+const price=p=>p.l?`${money(p.m)} - Medium | ${money(p.l)} - Large`:money(p.m);
+let cart=[],cat="Bestsellers",cur=null;
+function card(p,i){return `<button class="pc" data-i="${i}"><div class="pic">${p.b?`<span class="tag">${p.b}</span>`:""}<img class="${p.c.includes("Pastries")?"mul":""}" src="${IMG[p.n]}" alt="${p.n}"></div><h3>${p.n}</h3><p>${p.d}</p><span class="pr">${price(p)}</span></button>`}
+$("#feat").innerHTML=F.map(f=>`<div><svg viewBox="0 0 24 24"><path d="${f[2]}"/></svg><h3>${f[0]}</h3><p>${f[1]}</p></div>`).join("");
+$("#car").innerHTML=P.filter(p=>p.c.includes("Cold Brew")||p.c.includes("Iced Coffee")).map(p=>card(p,P.indexOf(p))).join("");
+$("#side").innerHTML=CATS.map(c=>`<button data-cat="${c}">${c}</button>`).join("");
+let term="";
+function renderMenu(){$$("#side button").forEach(b=>b.classList.toggle("on",!term&&b.dataset.cat==cat));const t=term.trim().toLowerCase();
+const h=P.map((p,i)=>(t?(p.n+" "+p.d+" "+p.c.join(" ")).toLowerCase().includes(t):p.c.includes(cat))?card(p,i):"").join("");
+$("#grid").innerHTML=h||`<p style="grid-column:1/-1;opacity:.75">No drinks or pastries match “${t.replace(/[<>&"]/g,"")}”. Try another word, like latte or croissant.</p>`}
+function closeSearch(){$("#sbar").classList.remove("on");$("#srch").setAttribute("aria-expanded","false");$("#sq").value="";if(term){term="";renderMenu()}}
+function go(v){$$(".view").forEach(e=>e.classList.toggle("on",e.id=="v-"+v));$$("#links button").forEach(b=>b.classList.toggle("on",b.dataset.go==v));$("#links").classList.remove("on");$("#burger").setAttribute("aria-expanded","false");scrollTo({top:0})}
+function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("on"),1800)}
+function open_(el){$("#scrim").classList.add("on");el.classList.add("on");el.setAttribute("aria-hidden","false")}
+function closeAll(){$("#scrim").classList.remove("on");$("#drawer").classList.remove("on");$("#modal").classList.remove("on")}
+function opts(name,arr,def,type="radio"){return `<div class="opts">${arr.map(a=>`<label><input type="${type}" name="${name}" value="${a}" ${(type=="radio"?a==def:false)?"checked":""}><span>${a}${a in ADD?` +${money(ADD[a])}`:""}</span></label>`).join("")}</div>`}
+const ADD={"Espresso Shot":30,"Boba":25,"Oat":20,"Almond":20};
+function openMod(i){cur=P[i];const p=cur,drink=p.c[0]!="Pastries"&&!p.c.includes("Pastries");
+$("#modal").innerHTML=`<h2 id="mt" style="font-size:1.6rem">${p.n}</h2><p style="opacity:.75;font-size:.9rem">${p.d}</p>`+(drink?`
+<fieldset><legend>Size</legend>${opts("size",["Medium","Large"],"Medium")}</fieldset>
+${p.h?"":`<fieldset><legend>Ice level</legend>${opts("ice",["Less","Regular","Extra"],"Regular")}</fieldset>`}
+<fieldset><legend>Sweetness</legend>${opts("sweet",["0%","25%","50%","75%","100%"],"50%")}</fieldset>
+<fieldset><legend>Milk</legend>${opts("milk",["Full Cream","Oat","Almond"],"Full Cream")}</fieldset>
+<fieldset><legend>Add-ons</legend>${opts("add",["Espresso Shot","Boba"],"","checkbox")}</fieldset>`:"")+`
+<div class="mf"><div class="qty"><button id="mn" aria-label="Less">−</button><b id="q">1</b><button id="pl" aria-label="More">+</button></div><button class="btn" id="addb">Add to cart</button></div>`;
+open_($("#modal"));
+const calc=()=>{const f=new FormData($("#modal"));return 0};
+$("#mn").onclick=()=>{$("#q").textContent=Math.max(1,+$("#q").textContent-1)};
+$("#pl").onclick=()=>{$("#q").textContent=+$("#q").textContent+1};
+$("#addb").onclick=()=>{const g=n=>($(`#modal input[name=${n}]:checked`)||{}).value;
+const size=drink?g("size"):"",adds=$$("#modal input[name=add]:checked").map(e=>e.value),milk=drink?g("milk"):"";
+let u=(size=="Large"&&p.l)?p.l:p.m;u+=adds.reduce((s,a)=>s+ADD[a],0)+(ADD[milk]||0);
+cart.push({n:p.n,u,q:+$("#q").textContent,d:drink?[size,(p.h?"Hot":g("ice")+" ice"),g("sweet")+" sweet",milk,...adds].join(", "):""});
+closeAll();renderCart();toast(p.n+" added to cart")}}
+function renderCart(){const q=cart.reduce((s,c)=>s+c.q,0);$("#cnt").textContent=q;
+$("#items").innerHTML=cart.length?cart.map((c,i)=>`<div class="ci"><div><b>${c.q} × ${c.n}</b><small>${c.d}</small><button data-rm="${i}">Remove</button></div><b>${money(c.u*c.q)}</b></div>`).join(""):`<p style="opacity:.7">Your cart is empty. Pick a drink from the menu to start your order.</p>`;
+$("#total").textContent=money(cart.reduce((s,c)=>s+c.u*c.q,0))}
+document.addEventListener("click",e=>{const t=e.target;let n;
+if(n=t.closest("[data-go]"))return go(n.dataset.go);
+if(n=t.closest("[data-cat]")){cat=n.dataset.cat;term="";$("#sq").value="";return renderMenu()}
+if(n=t.closest(".pc"))return openMod(+n.dataset.i);
+if(n=t.closest("[data-rm]")){cart.splice(+n.dataset.rm,1);return renderCart()}
+if(t.closest("#srch")){const o=$("#sbar").classList.toggle("on");$("#srch").setAttribute("aria-expanded",o);if(o)$("#sq").focus();else closeSearch();return}
+if(t.closest("#sx"))return closeSearch();
+if(t.closest("#bag,#order"))return open_($("#drawer"));
+if(t.closest("#x1")||t.id=="scrim")return closeAll();
+if(t.id=="chk")return cart.length?(cart=[],renderCart(),closeAll(),toast("Order placed. Salamat!")):toast("Add a drink first");
+if(t.closest("#burger")){const o=$("#links").classList.toggle("on");$("#burger").setAttribute("aria-expanded",o)}});
+document.addEventListener("keydown",e=>{if(e.key=="Escape"){closeAll();closeSearch()}});
+document.querySelector(".hero").style.setProperty("--hb","url("+HERO+")");
+document.querySelectorAll("[data-ph]").forEach(e=>e.src=PH[e.dataset.ph]);
+document.querySelectorAll("[data-bg]").forEach(e=>e.style.setProperty("--bb","url("+PH[e.dataset.bg]+")"));
+document.querySelectorAll("[data-img]").forEach(e=>e.src=IMG[e.dataset.img]);
+$("#sq").addEventListener("input",e=>{term=e.target.value;if(!$("#v-menu").classList.contains("on"))go("menu");renderMenu()});
+renderMenu();renderCart();
+</script>
+</body>
+</html>
